@@ -1,0 +1,26 @@
+name: SQL Validation
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  lint-sql:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install SQLFluff
+        run: pip install sqlfluff==3.2.5
+
+      - name: Lint T-SQL scripts
+        run: sqlfluff lint sql/*.sql --dialect tsql

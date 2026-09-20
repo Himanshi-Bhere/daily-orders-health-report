@@ -1,91 +1,75 @@
-# Daily Orders Health Report — Olist E-Commerce
+# Daily Orders Health Report (Olist E-Commerce)
 
-## Project Overview
+## Purpose
 
-This project analyzes order and delivery performance using the Olist Brazilian E-Commerce dataset.
+This repository contains a SQL Server-based daily operations health report for the Olist Brazilian e-commerce dataset.
 
-The objective was to create a daily operational health report that helps identify order volume, delivery performance, cancellations, late deliveries, and changes in average delivery time.
+It answers core operational questions for a fixed analysis window:
 
-The analysis was performed using SQL Server and Excel, following a workflow similar to a real-world data analyst reporting process.
-
----
-
-## Business Problem
-
-E-commerce operations teams need to monitor order activity and delivery performance regularly.
-
-The key questions addressed in this project are:
-
-- How many orders were placed?
-- How many orders were delivered?
-- How many orders were cancelled?
-- How many deliveries were late?
+- How many orders were placed, delivered, and cancelled each day?
+- How many delivered orders were late?
 - What was the average delivery time?
-- Which dates showed potential operational issues?
 
----
+## Repository Structure
 
-## Dataset
+```text
+.
+├── sql/
+│   └── olist_orders_health_report.sql
+├── excel/
+│   └── daily_orders_health_report.xlsx
+└── screenshorts/
+    ├── daily_health_report.png
+    ├── daily_orders_chart.png
+    ├── findings .png
+    └── summary.png
+```
 
-**Dataset:** Olist Brazilian E-Commerce Public Dataset
+## Prerequisites
 
-The dataset contains approximately 100,000 orders from the Brazilian e-commerce marketplace Olist.
+- Microsoft SQL Server (T-SQL compatible)
+- SQL client such as SQL Server Management Studio (SSMS) or Azure Data Studio
+- Database with table `dbo.olist_orders_dataset`
 
-The order data covers:
+## Data Assumptions
 
-**September 2016 – October 2018**
+The SQL script is written for the existing dataset structure and does not create or modify schema objects.
 
-For this analysis, the final 90-day period available in the dataset was used:
+Expected columns used by the report:
 
-**19 July 2018 – 17 October 2018**
+- `order_purchase_timestamp`
+- `order_status`
+- `order_delivered_customer_date`
+- `order_estimated_delivery_date`
 
-The final daily report contains 59 dates with recorded orders within this analysis window.
+Business definitions used:
 
----
+- **Delivered order:** `order_status = 'delivered'`
+- **Cancelled order:** `order_status = 'canceled'`
+- **Late delivery:** delivered order where `order_delivered_customer_date > order_estimated_delivery_date`
 
-## Tools Used
+## Setup and Usage
 
-- SQL Server
-- SQL Server Management Studio (SSMS)
-- Microsoft Excel
-- GitHub
-- VS Code
+1. Load the Olist orders data into `dbo.olist_orders_dataset` in SQL Server.
+2. Open `sql/olist_orders_health_report.sql`.
+3. Update the database name and analysis date parameters if needed.
+4. Run the script in SSMS.
 
----
+The script returns:
 
-## SQL Analysis
+1. Dataset profile checks (counts/status/date range)
+2. 90-day aggregate KPI queries
+3. Daily operational metric queries
+4. Final daily health report query (single-table output for downstream reporting)
 
-The analysis was performed in SQL Server.
+## Output Example (Final Daily Report)
 
-Key SQL concepts used:
+| order_date | orders_placed | orders_delivered | orders_cancelled | late_deliveries | average_delivery_days |
+|---|---:|---:|---:|---:|---:|
+| 2018-07-19 | ... | ... | ... | ... | ... |
+| 2018-07-20 | ... | ... | ... | ... | ... |
 
-- `SELECT`
-- `WHERE`
-- `COUNT`
-- `SUM`
-- `AVG`
-- `MIN`
-- `MAX`
-- `GROUP BY`
-- `ORDER BY`
-- `CAST`
-- `DATEDIFF`
-- `DATEADD`
-- `CASE WHEN`
-- Conditional aggregation
-
-The SQL analysis was used to create a daily analytical dataset containing:
-
-- Order date
-- Orders placed
-- Orders delivered
-- Orders cancelled
-- Late deliveries
-- Average delivery days
-
----
-
-## Key KPIs
+## Key KPI Snapshot (Current README Baseline)
 
 | KPI | Result |
 |---|---:|
@@ -97,71 +81,37 @@ The SQL analysis was used to create a daily analytical dataset containing:
 | Cancellation Rate | 1.30% |
 | Late Delivery Rate | 8.78% |
 
-The late-delivery rate is calculated as:
+Formulas:
 
-`Late Deliveries / Delivered Orders × 100`
+- `Late Delivery Rate = Late Deliveries / Delivered Orders × 100`
+- `Cancellation Rate = Cancelled Orders / Orders Placed × 100`
 
-The cancellation rate is calculated as:
+## Troubleshooting
 
-`Cancelled Orders / Orders Placed × 100`
+- **`Invalid object name 'dbo.olist_orders_dataset'`**
+  Confirm the table exists in the selected database and schema.
+- **No rows in final report**
+  Check the configured analysis start/end timestamps and data availability.
+- **Unexpected KPI changes**
+  Verify status values (`delivered`, `canceled`) and timestamp timezone/source consistency in the imported dataset.
 
----
+## Validation
 
-## Excel Report
+Recommended lightweight checks after SQL changes:
 
-The Excel report contains three main sections:
+- Run the script end-to-end in SQL Server.
+- Confirm `orders_delivered <= orders_placed` for each `order_date`.
+- Confirm `late_deliveries <= orders_delivered` for each `order_date`.
+- Spot-check that average delivery days is only computed for delivered orders with non-null delivery timestamps.
 
-### 1. Daily Health Report
+## Contribution Guidance
 
-A daily-level dataset showing:
+When contributing:
 
-- Orders placed
-- Orders delivered
-- Orders cancelled
-- Late deliveries
-- Average delivery days
-
-### 2. Operational Health Flags
-
-Three monitoring flags were created:
-
-| Metric | Alert Threshold |
-|---|---:|
-| Cancelled Orders | > 3 |
-| Late Deliveries | > 10 |
-| Average Delivery Days | > 8 |
-
-These thresholds were defined specifically for this analytical exercise to identify dates that may require further investigation.
-
-### 3. Summary & Findings
-
-The Summary sheet provides the overall KPIs, while the Findings sheet translates the numerical results into business observations.
-
----
-
-## Key Findings
-
-### 1. Order Volume
-
-9,529 orders were placed during the 90-day analysis period, providing a broad view of order volume and operational performance.
-
-### 2. Delivery Performance
-
-9,284 orders were delivered, while 815 deliveries were classified as late. This represents a late-delivery rate of approximately 8.78% among delivered orders.
-
-### 3. Cancellation & Operational Risk
-
-124 orders were cancelled, representing approximately 1.30% of orders placed.
-
-Daily monitoring also identified multiple dates where cancellations, late deliveries, or average delivery time exceeded the defined alert thresholds.
-
-### Overall Observation
-
-The analysis indicates that delivery timeliness is a more prominent operational issue than cancellations during the analyzed period.
-
-The daily health flags provide a simple monitoring mechanism for identifying dates that may require further investigation.
-
----
+- Keep SQL Server T-SQL compatibility.
+- Preserve the intent of daily operational reporting.
+- Prefer behavior-preserving refactors (readability, safety, and maintainability).
+- Document any assumption changes in this README.
 
 ## Project Workflow
 
@@ -181,3 +131,4 @@ Operational Health Flags
 Excel Summary
       ↓
 Business Findings
+```
