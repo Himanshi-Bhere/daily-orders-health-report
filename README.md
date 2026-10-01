@@ -1,11 +1,11 @@
 # Daily Orders Health Report
 
 <p align="center">
-  <strong>Operational Intelligence for E-Commerce Order, Delivery, and Category Performance</strong>
+  <strong>SQL Server and Excel Business Intelligence Project for E-Commerce Performance Monitoring</strong>
 </p>
 
 <p align="center">
-  A SQL Server and Microsoft Excel analytics project that transforms raw Olist marketplace data into practical daily health monitoring, operational KPIs, category scorecards, and business recommendations.
+  Transforming Olist marketplace data into operational health metrics, delivery insights, cancellation monitoring, and category-level performance intelligence.
 </p>
 
 <p align="center">
@@ -19,7 +19,7 @@
     <img src="https://img.shields.io/badge/Microsoft%20Excel-Reporting-217346?style=for-the-badge&logo=microsoftexcel&logoColor=white" alt="Microsoft Excel">
   </a>
   <a href="https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce">
-    <img src="https://img.shields.io/badge/Dataset-Olist%20E--Commerce-0F766E?style=for-the-badge" alt="Olist Dataset">
+    <img src="https://img.shields.io/badge/Dataset-Olist%20Brazilian%20E--Commerce-0F766E?style=for-the-badge" alt="Olist Dataset">
   </a>
 </p>
 
@@ -27,129 +27,135 @@
 
 ## Executive Summary
 
-The **Daily Orders Health Report** is an end-to-end business intelligence project built using **SQL Server, T-SQL, and Microsoft Excel**.
+The **Daily Orders Health Report** is an end-to-end business analytics project developed using **Microsoft SQL Server, T-SQL, and Microsoft Excel**.
 
-The project analyzes approximately 100,000 Brazilian e-commerce orders to answer two practical business questions:
+The project analyzes the Olist Brazilian E-Commerce dataset to monitor operational performance, identify delivery risks, evaluate cancellations, and compare product-category performance.
 
-1. **Is daily order and delivery performance operating within acceptable limits?**
-2. **Which product categories are driving revenue, customer satisfaction, and operational risk?**
+This repository contains two connected analytical workstreams:
 
-The solution is organized into two complementary analytical workstreams:
+1. **Part 1 — Daily Order Health**
+2. **Part 2 — Category KPI Scorecard**
 
-- **Part 1 — Daily Order Health:** Operational monitoring of order volume, deliveries, cancellations, late deliveries, and delivery duration.
-- **Part 2 — Category KPI Scorecard:** Commercial and customer-experience analysis by product category and month.
-
-The result is a repeatable analytics workflow that connects raw transactional data to measurable business performance and decision-ready recommendations.
+Together, these workstreams demonstrate how raw transactional data can be converted into structured KPIs, operational monitoring reports, category scorecards, and actionable business insights.
 
 ---
 
-## Business Value
+## Business Problem
 
-This project demonstrates how analytics can support operational and commercial decision-making by helping teams:
+E-commerce businesses need to monitor both operational execution and commercial performance.
 
-- Monitor daily order activity
-- Identify delivery performance deterioration
-- Track cancellation and late-delivery risk
-- Evaluate category-level revenue contribution
-- Compare customer review performance
-- Identify high-performing and underperforming categories
-- Prioritize dates and categories requiring investigation
-- Convert SQL outputs into clear Excel reporting
-- Build a foundation for future automated monitoring
+This project addresses questions such as:
 
----
-
-## Project Highlights
-
-| Area | What This Project Demonstrates |
-|---|---|
-| **Data Preparation** | Joining and preparing multiple relational e-commerce datasets |
-| **Operational Analytics** | Daily order, delivery, cancellation, and late-delivery monitoring |
-| **Commercial Analytics** | Category revenue, order volume, AOV, and ranking analysis |
-| **Customer Experience** | Review-score and category-level satisfaction analysis |
-| **Risk Monitoring** | Cancellation-rate and late-delivery-rate evaluation |
-| **Business Reporting** | Excel dashboards, summaries, charts, scorecards, and findings |
-| **SQL Capability** | CTEs, conditional aggregation, window functions, date logic, and KPI calculations |
-| **Communication** | Translating analytical results into business-focused insights |
-
----
-
-## Analytical Workstreams
-
-### Part 1 — Daily Order Health
-
-The first workstream evaluates operational performance during a selected 90-day reporting period.
-
-#### Core questions
-
-- How many orders were placed each day?
-- How many orders were successfully delivered?
+- How many orders were placed during the selected reporting period?
+- How many orders were delivered successfully?
 - How many orders were cancelled?
-- How frequently did late deliveries occur?
-- What was the average delivery duration?
-- Which dates required operational attention?
-- Did delivery issues represent a larger risk than cancellations?
+- How many deliveries occurred after the estimated delivery date?
+- What was the average delivery time?
+- Which product categories generated the most revenue?
+- Which categories had the highest order volume?
+- Which categories had stronger customer review scores?
+- Which categories showed higher cancellation risk?
+- Which categories should be prioritized for improvement?
 
-#### Metrics produced
+---
 
-- Daily order volume
-- Delivered orders
-- Cancelled orders
-- Late deliveries
-- Average delivery time
-- Cancellation rate
-- Late-delivery rate
-- Operational health flags
-- Threshold-based monitoring indicators
+## Project Objectives
 
-#### Reporting period
+The main objectives of this project are to:
+
+- Build a repeatable SQL-based analytics workflow
+- Monitor daily order and delivery performance
+- Measure delivery delays and cancellation activity
+- Calculate operational health indicators
+- Analyze revenue by product category
+- Calculate category-level average order value
+- Evaluate customer review performance
+- Measure category-level cancellation rates
+- Classify categories using revenue bands
+- Identify top-performing and underperforming categories
+- Present business findings through Excel-based reporting
+
+---
+
+## Project Architecture
+
+```text
+Olist E-Commerce Dataset
+            |
+            v
+SQL Server Data Loading
+            |
+            v
+Data Validation and Table Checks
+            |
+            v
+Relational Joins and Data Preparation
+            |
+            v
+KPI Calculations and Business Rules
+            |
+            +-----------------------------+
+            |                             |
+            v                             v
+Part 1: Daily Order Health       Part 2: Category KPI Scorecard
+            |                             |
+            v                             v
+Operational Monitoring            Commercial Performance Analysis
+            |                             |
+            +-------------+---------------+
+                          |
+                          v
+                 Excel Reporting
+                          |
+                          v
+             Business Findings and Insights
+```
+
+---
+
+# Part 1 — Daily Order Health
+
+## Purpose
+
+Part 1 focuses on operational performance during a selected 90-day reporting period.
+
+The analysis evaluates order volume, delivery completion, cancellations, late deliveries, and average delivery duration.
+
+## Reporting Period
 
 ```text
 July 19, 2018 through October 17, 2018
 ```
 
-[View Part 1 Documentation](part1-order-health/README.md)  
-[View Part 1 SQL Script](part1-order-health/sql/part1_daily_orders_health.sql)  
-[View Part 1 Excel Report](part1-order-health/excel/daily_orders_health_report.xlsx)
+## Business Questions
 
----
+Part 1 answers the following questions:
 
-### Part 2 — Category KPI Scorecard
+- How many orders were placed during the reporting period?
+- How many orders were delivered?
+- How many orders were cancelled?
+- How many delivered orders were late?
+- What was the average delivery time?
+- How did order volume change by date?
+- Which dates showed unusual operational activity?
+- Was delivery delay or cancellation the more significant operational concern?
 
-The second workstream evaluates category performance across revenue, orders, customer reviews, and cancellation risk.
+## Part 1 Metrics
 
-#### Core questions
+The daily health analysis calculates:
 
-- Which categories generated the most revenue?
-- Which categories received the strongest customer ratings?
-- Which categories had the highest order volume?
-- Which categories showed elevated cancellation risk?
-- How does category performance change by month?
-- Which categories belong in the top and bottom performance groups?
-
-#### Metrics produced
-
-- Total revenue
-- Unique orders
-- Average order value
-- Average customer review score
+- Total orders
+- Orders placed by day
+- Delivered orders
 - Cancelled orders
-- Cancellation rate
-- Revenue-band classification
-- Category ranking
-- Top-10 categories
-- Bottom-10 categories
-- Monthly category performance
-- Category-level business findings
+- Late deliveries
+- Average delivery days
+- Daily delivery activity
+- Daily cancellation activity
+- Daily late-delivery activity
+- Daily average delivery time
 
-[View Part 2 Documentation](part2-category-kpi-scorecard/README.md)  
-[View Part 2 SQL Script](part2-category-kpi-scorecard/sql/part2_category_kpi_scorecard.sql)
-
----
-
-## Part 1 — Operational KPI Snapshot
-
-The selected 90-day analysis produced the following results:
+## Part 1 KPI Snapshot
 
 | KPI | Result |
 |---|---:|
@@ -161,83 +167,197 @@ The selected 90-day analysis produced the following results:
 | Cancellation rate | **1.30%** |
 | Late-delivery rate | **8.78%** |
 
-### Executive interpretation
+## Part 1 Business Interpretation
 
-The results indicate that **delivery timeliness was a more significant operational concern than cancellations** during the analyzed period.
+The analysis indicates that delivery timeliness was a more significant operational concern than cancellations during the selected reporting period.
 
-While the cancellation rate remained relatively low at **1.30%**, the late-delivery rate reached **8.78%**. This suggests that operational improvement efforts should prioritize:
+The cancellation rate was relatively low compared with the late-delivery rate. Therefore, the most important improvement areas would include:
 
 - Delivery reliability
 - Logistics coordination
-- Estimated-date accuracy
-- Carrier and seller performance monitoring
-- Early identification of dates with unusual late-delivery activity
+- Carrier performance
+- Estimated delivery-date accuracy
+- Seller fulfillment performance
+- Early identification of high-risk delivery dates
+
+## Part 1 SQL Logic
+
+The SQL analysis includes:
+
+- Total order counting
+- Order-status distribution
+- Minimum and maximum order dates
+- Rolling 90-day period identification
+- Delivered-order filtering
+- Cancelled-order filtering
+- Late-delivery identification
+- Average delivery-time calculation
+- Daily order aggregation
+- Daily delivery aggregation
+- Daily cancellation aggregation
+- Daily late-delivery aggregation
+- Final daily order health report
+
+## Part 1 Files
+
+- [Open Part 1 SQL Script](part1-order-health/sql/part1_daily_orders_health.sql)
+- [View Daily Health Report](part1-order-health/screenshorts/daily_health_report.png)
+- [View Daily Orders Trend](part1-order-health/screenshorts/daily_orders_chart.png)
+- [View Operational Summary](part1-order-health/screenshorts/summary.png)
+- [View Operational Findings](part1-order-health/screenshorts/findings%20.png)
 
 ---
 
-## KPI Framework
+# Part 2 — Category KPI Scorecard
+
+## Purpose
+
+Part 2 evaluates the commercial and customer-experience performance of product categories.
+
+The analysis combines revenue, order volume, average order value, customer review scores, cancellation activity, and revenue classification.
+
+## Business Questions
+
+Part 2 answers the following questions:
+
+- Which product categories generate the highest revenue?
+- Which categories have the highest order volume?
+- What is the average order value for each category?
+- Which categories receive the strongest customer review scores?
+- Which categories have the highest cancellation rates?
+- How does category performance change by month?
+- Which categories belong to the top-performing group?
+- Which categories require additional attention?
+
+## Part 2 Metrics
+
+The category scorecard calculates:
+
+- Total revenue
+- Total unique orders
+- Average order value
+- Average review score
+- Cancelled orders
+- Cancellation rate
+- Monthly category revenue
+- Monthly category order volume
+- Monthly category review score
+- Revenue-band classification
+- Top-10 category ranking
+- Bottom-10 category ranking
+
+## Revenue-Band Classification
+
+Categories are classified using the following analytical rules:
+
+| Revenue Threshold | Classification |
+|---:|---|
+| Revenue greater than or equal to 1,000,000 | **Star** |
+| Revenue greater than or equal to 700,000 | **Watch** |
+| Revenue below 700,000 | **Fix** |
+
+These classifications are analytical categories created specifically for this project.
+
+## Ranking Methodology
+
+The top and bottom category rankings are calculated only for categories with at least **100 distinct orders**.
+
+This minimum-volume condition helps avoid ranking categories with very limited activity.
+
+The ranking output includes:
+
+- Ranking type
+- Category rank
+- Product category
+- Total revenue
+- Total orders
+- Average order value
+
+## Part 2 SQL Logic
+
+The SQL analysis includes:
+
+- Table and column validation
+- Order, item, and product joins
+- Revenue calculation
+- Revenue by category
+- Revenue by month and category
+- Total unique-order calculation
+- Orders by category
+- Monthly category order volume
+- Revenue-band classification
+- Monthly category average order value
+- Average customer review score
+- Monthly category review score
+- Total cancellation calculation
+- Overall cancellation rate
+- Monthly category cancellation rate
+- Final monthly category KPI scorecard
+- Top-10 and bottom-10 category ranking
+
+## Part 2 Files
+
+- [Open Part 2 SQL Script](part2-category-pkpi-scorecard/sql/part2_category_kpi_scorecard.sql)
+- [View Category KPI Scorecard](part2-category-pkpi-scorecard/screenshorts/part2_category_pivot.png)
+- [View Category Summary](part2-category-pkpi-scorecard/screenshorts/part2_summary.png)
+- [View Category Findings](part2-category-pkpi-scorecard/screenshorts/part2_findings.png)
+- [View Category Performance Sparklines](part2-category-pkpi-scorecard/screenshorts/part2_sparkline.png)
+
+---
+
+## Combined KPI Framework
 
 ### Operational Health KPIs
 
-| KPI | Business Purpose |
+| KPI | Business Meaning |
 |---|---|
-| Total orders | Measures overall demand and workload |
-| Daily order volume | Identifies demand patterns and unusual activity |
+| Total orders | Measures total demand |
+| Orders placed by day | Shows daily workload and demand movement |
 | Delivered orders | Measures successful order completion |
-| Cancelled orders | Indicates fulfillment or customer-retention risk |
-| Late deliveries | Measures service-level performance |
-| Average delivery time | Tracks delivery efficiency |
-| Cancellation rate | Normalizes cancellation activity |
-| Late-delivery rate | Measures delivery reliability |
+| Cancelled orders | Highlights fulfillment or customer-retention risk |
+| Late deliveries | Measures delivery reliability |
+| Average delivery days | Measures fulfillment speed |
+| Cancellation rate | Normalizes cancellation performance |
+| Late-delivery rate | Measures service-level risk |
 
 ### Category Performance KPIs
 
-| KPI | Business Purpose |
+| KPI | Business Meaning |
 |---|---|
-| Total revenue | Measures category commercial contribution |
-| Unique orders | Measures category demand |
+| Total revenue | Measures commercial contribution |
+| Total unique orders | Measures category demand |
 | Average order value | Measures average customer spend |
 | Average review score | Measures customer satisfaction |
-| Cancelled orders | Identifies fulfillment risk |
-| Cancellation rate | Enables fair category comparison |
-| Revenue band | Classifies category scale |
+| Cancelled orders | Measures category-level fulfillment risk |
+| Cancellation rate | Enables comparison across categories |
+| Revenue band | Classifies category commercial importance |
 | Category ranking | Supports prioritization and benchmarking |
-
----
-
-## End-to-End Analytics Workflow
-
-```text
-Raw Olist e-commerce dataset
-            ↓
-SQL Server data loading
-            ↓
-Data validation and table inspection
-            ↓
-Relational joins and data preparation
-            ↓
-KPI calculation and business rules
-            ↓
-Daily operational monitoring
-            ↓
-Category performance scorecard
-            ↓
-Excel reporting and visualization
-            ↓
-Business findings and recommendations
-```
 
 ---
 
 ## Data Model
 
-The analysis uses the following core Olist tables:
+The project uses the following primary Olist tables:
 
 ```text
 olist_orders_dataset
 olist_order_items_dataset
 olist_products_dataset
 olist_order_reviews_dataset
+```
+
+### Key relationships
+
+```text
+olist_orders_dataset
+        |
+        +── olist_order_items_dataset
+                    |
+                    +── olist_products_dataset
+
+olist_orders_dataset
+        |
+        +── olist_order_reviews_dataset
 ```
 
 ### Important fields
@@ -254,40 +374,23 @@ price
 review_score
 ```
 
-### Analytical relationships
-
-```text
-Orders
-  ├── Order Items
-  │     └── Products
-  └── Order Reviews
-```
-
-This structure enables the analysis to connect:
-
-- Order lifecycle information
-- Product and category details
-- Order-item revenue
-- Customer review outcomes
-- Actual versus estimated delivery dates
-
 ---
 
 ## Technology Stack
 
-| Technology | Application |
+| Technology | Purpose |
 |---|---|
-| **SQL Server** | Data preparation, joins, validation, and analytical queries |
-| **T-SQL** | KPI calculations, classifications, rankings, and date-based analysis |
-| **SQL Server Management Studio** | Query execution and result validation |
-| **Microsoft Excel** | Dashboards, charts, scorecards, summaries, and findings |
-| **GitHub** | Version control, project documentation, and portfolio presentation |
+| **Microsoft SQL Server** | Data storage, querying, preparation, and validation |
+| **T-SQL** | KPI calculations, joins, aggregations, rankings, and classifications |
+| **SQL Server Management Studio** | SQL script execution and result validation |
+| **Microsoft Excel** | Reporting, dashboards, visual analysis, and findings |
+| **GitHub** | Version control, documentation, and portfolio presentation |
 
 ---
 
 ## SQL Techniques Demonstrated
 
-This project demonstrates practical SQL Server techniques used in real-world analytics workflows:
+This project demonstrates practical SQL Server techniques, including:
 
 - `INNER JOIN`
 - `LEFT JOIN`
@@ -311,8 +414,9 @@ This project demonstrates practical SQL Server techniques used in real-world ana
 - `NULLIF`
 - `ROW_NUMBER`
 - `HAVING`
-- Date-level aggregation
 - Null handling
+- Date-level aggregation
+- Monthly aggregation
 - KPI classification
 - Ranking logic
 - Rate calculations
@@ -320,72 +424,74 @@ This project demonstrates practical SQL Server techniques used in real-world ana
 
 ---
 
-## Report Previews
-
-### Daily Order Health Report
-
-![Daily Health Report](part1-order-health/screenshots/daily_health_report.png)
-
-### Daily Orders Trend
-
-![Daily Orders Trend](part1-order-health/screenshots/daily_orders_chart.png)
-
-### Operational Summary
-
-![Operational Summary](part1-order-health/screenshots/summary.png)
-
-### Operational Findings
-
-![Operational Findings](part1-order-health/screenshots/findings.png)
-
-### Category KPI Scorecard
-
-![Category KPI Scorecard](part2-category-kpi-scorecard/screenshots/part2_category_pivot.png)
-
-### Category Summary
-
-![Category Summary](part2-category-kpi-scorecard/screenshots/part2_summary.png)
-
-### Category Findings
-
-![Category Findings](part2-category-kpi-scorecard/screenshots/part2_findings.png)
-
-### Category Performance Sparklines
-
-![Category Sparklines](part2-category-kpi-scorecard/screenshots/part2_sparkline.png)
-
----
-
 ## Repository Structure
 
 ```text
 .
+├── excel/
+│
 ├── part1-order-health/
-│   ├── excel/
-│   │   └── daily_orders_health_report.xlsx
 │   ├── sql/
 │   │   └── part1_daily_orders_health.sql
-│   ├── screenshots/
-│   │   ├── daily_health_report.png
-│   │   ├── daily_orders_chart.png
-│   │   ├── findings.png
-│   │   └── summary.png
-│   └── README.md
+│   └── screenshorts/
+│       ├── daily_health_report.png
+│       ├── daily_orders_chart.png
+│       ├── findings .png
+│       └── summary.png
 │
-├── part2-category-kpi-scorecard/
-│   ├── excel/
-│   │   └── .gitkeep
+├── part2-category-pkpi-scorecard/
 │   ├── sql/
 │   │   └── part2_category_kpi_scorecard.sql
-│   ├── screenshots/
-│   │   ├── part2_category_pivot.png
-│   │   ├── part2_findings.png
-│   │   ├── part2_sparkline.png
-│   │   └── part2_summary.png
-│   └── README.md
+│   └── screenshorts/
+│       ├── part2_category_pivot.png
+│       ├── part2_findings.png
+│       ├── part2_sparkline.png
+│       └── part2_summary.png
 │
 └── README.md
 ```
+
+---
+
+## Report Previews
+
+### Part 1 — Daily Order Health
+
+#### Daily Health Report
+
+![Daily Health Report](part1-order-health/screenshorts/daily_health_report.png)
+
+#### Daily Orders Trend
+
+![Daily Orders Trend](part1-order-health/screenshorts/daily_orders_chart.png)
+
+#### Operational Summary
+
+![Operational Summary](part1-order-health/screenshorts/summary.png)
+
+#### Operational Findings
+
+![Operational Findings](part1-order-health/screenshorts/findings%20.png)
+
+---
+
+### Part 2 — Category KPI Scorecard
+
+#### Category KPI Scorecard
+
+![Category KPI Scorecard](part2-category-pkpi-scorecard/screenshorts/part2_category_pivot.png)
+
+#### Category Summary
+
+![Category Summary](part2-category-pkpi-scorecard/screenshorts/part2_summary.png)
+
+#### Category Findings
+
+![Category Findings](part2-category-pkpi-scorecard/screenshorts/part2_findings.png)
+
+#### Category Performance Sparklines
+
+![Category Performance Sparklines](part2-category-pkpi-scorecard/screenshorts/part2_sparkline.png)
 
 ---
 
@@ -393,22 +499,30 @@ This project demonstrates practical SQL Server techniques used in real-world ana
 
 ### Prerequisites
 
+Before running the analysis, install or have access to:
+
 - Microsoft SQL Server
 - SQL Server Management Studio
 - Microsoft Excel
 - Olist Brazilian E-Commerce Public Dataset
 
-### Database setup
+### Step 1 — Download the Dataset
 
-1. Download the Olist Brazilian E-Commerce Public Dataset.
-2. Create a SQL Server database named:
+Download the Olist Brazilian E-Commerce Public Dataset from Kaggle:
+
+[Download the Olist Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+
+### Step 2 — Create the Database
+
+Create a SQL Server database named:
 
 ```sql
-OlistAnalytics
+CREATE DATABASE OlistAnalytics;
 ```
 
-3. Load the required Olist tables into the database.
-4. Confirm that the following tables are available:
+### Step 3 — Load the Required Tables
+
+Load the following tables into the `OlistAnalytics` database:
 
 ```text
 olist_orders_dataset
@@ -417,91 +531,176 @@ olist_products_dataset
 olist_order_reviews_dataset
 ```
 
-5. Open the relevant SQL script in SQL Server Management Studio.
-6. Execute the queries and validate the results.
-7. Export or transfer the result sets into Excel.
-8. Use the Excel workbooks and screenshots as reporting outputs.
+### Step 4 — Validate the Data
 
-### Project files
+Confirm that the tables contain the required columns:
 
-#### Part 1 SQL script
+```text
+order_id
+order_status
+order_purchase_timestamp
+order_delivered_customer_date
+order_estimated_delivery_date
+product_id
+product_category_name
+price
+review_score
+```
+
+### Step 5 — Run Part 1
+
+Open and execute:
 
 ```text
 part1-order-health/sql/part1_daily_orders_health.sql
 ```
 
-#### Part 1 Excel workbook
+Review the operational outputs, including:
+
+- Total orders
+- Order statuses
+- Daily order volume
+- Delivered orders
+- Cancelled orders
+- Late deliveries
+- Average delivery days
+- Final daily health report
+
+### Step 6 — Run Part 2
+
+Open and execute:
 
 ```text
-part1-order-health/excel/daily_orders_health_report.xlsx
+part2-category-pkpi-scorecard/sql/part2_category_kpi_scorecard.sql
 ```
 
-#### Part 2 SQL script
+Review the category outputs, including:
 
-```text
-part2-category-kpi-scorecard/sql/part2_category_kpi_scorecard.sql
-```
+- Revenue by category
+- Monthly category revenue
+- Category order volume
+- Average order value
+- Review scores
+- Cancellation rates
+- Revenue bands
+- Final KPI scorecard
+- Top-10 and bottom-10 rankings
+
+### Step 7 — Review the Reports
+
+Use the available Excel reporting files and visual outputs to interpret the results and communicate the findings.
 
 ---
 
 ## Data Quality and Interpretation Notes
 
-- Part 1 uses a fixed reporting window from **July 19, 2018 through October 17, 2018**.
-- The reporting period should be updated when applying the analysis to a different time range.
-- Delivery metrics depend on the availability of actual delivery timestamps.
-- A delivery is classified as late when the actual delivery date is later than the estimated delivery date.
-- Daily operational metrics are grouped by order purchase date unless otherwise specified.
-- Category revenue is calculated using order-item prices.
+- Part 1 uses a fixed 90-day reporting period from **July 19, 2018 through October 17, 2018**.
+- The reporting dates can be modified when applying the analysis to another reporting period.
+- Late delivery is identified when the actual customer delivery date is later than the estimated delivery date.
+- Delivery-time calculations depend on the availability of actual delivery timestamps.
+- Daily order metrics are grouped using the order purchase date.
+- Daily delivered and late-delivery metrics are grouped using the customer delivery date.
+- Revenue is calculated using order-item prices.
 - Average order value is calculated as total revenue divided by distinct orders.
-- Review scores are aggregated before category-level analysis.
-- Revenue bands are analytical classifications created for this project.
-- Operational thresholds should be calibrated using historical performance or formal service-level agreements.
-- Results may change if the source data is cleaned, deduplicated, transformed, or loaded into a different schema.
-- The dataset is historical and should be interpreted as an analytical case study rather than a live operational feed.
+- Review scores are aggregated at the order level before category-level review analysis.
+- Cancellation rate is calculated using distinct orders.
+- Revenue-band thresholds are analytical classifications created for this project.
+- Top-10 and bottom-10 category rankings require a minimum of 100 distinct orders.
+- Results may change if the source data is cleaned, deduplicated, transformed, or loaded into a different database schema.
+- The dataset is historical and should be treated as an analytical case study rather than a live operational system.
+
+---
+
+## Key Business Takeaways
+
+### Operational perspective
+
+The operational analysis shows that delivery timeliness requires closer attention than cancellation volume during the selected reporting period.
+
+The late-delivery rate of **8.78%** is considerably higher than the cancellation rate of **1.30%**, suggesting that logistics and fulfillment reliability are key areas for improvement.
+
+### Commercial perspective
+
+The category scorecard enables decision-makers to distinguish between categories based on:
+
+- Revenue contribution
+- Customer demand
+- Average customer spend
+- Customer satisfaction
+- Cancellation risk
+- Monthly performance
+
+This provides a more complete view than evaluating categories using revenue alone.
+
+### Management perspective
+
+The combined solution supports:
+
+- Operational monitoring
+- Category prioritization
+- Risk identification
+- Performance benchmarking
+- Business review discussions
+- Future dashboard automation
 
 ---
 
 ## Recommended Business Actions
 
-Based on the operational results, the following actions would be appropriate for further investigation:
+Based on the analysis, the following actions could be considered:
 
-### 1. Prioritize delivery reliability
+### 1. Improve delivery reliability
 
-The late-delivery rate is materially higher than the cancellation rate. Delivery performance should therefore be treated as a primary operational improvement area.
+Investigate the root causes of late deliveries, including:
 
-### 2. Investigate high-risk dates
-
-Dates with unusual late-delivery volume or low delivery performance should be reviewed for:
-
-- Logistics disruptions
-- Seller delays
+- Seller fulfillment delays
 - Carrier capacity constraints
-- Incorrect delivery estimates
-- Regional fulfillment issues
+- Logistics disruptions
+- Regional delivery issues
+- Inaccurate estimated delivery dates
 
-### 3. Segment category performance
+### 2. Monitor high-risk dates
 
-Categories should be evaluated using multiple dimensions rather than revenue alone:
+Create an alert process for dates with:
 
-- Revenue contribution
-- Order volume
-- Average order value
-- Customer review score
-- Cancellation rate
+- Unusually high late deliveries
+- Sudden order-volume changes
+- Abnormal cancellation activity
+- Increased average delivery duration
 
-### 4. Calibrate operational thresholds
+### 3. Prioritize category performance reviews
 
-Monitoring thresholds should be based on historical baselines, business expectations, and agreed service-level targets.
+Use the category scorecard to identify:
 
-### 5. Automate the reporting workflow
+- High-revenue categories with weak customer reviews
+- High-volume categories with high cancellation rates
+- Low-revenue categories requiring improvement
+- Categories with strong growth potential
 
-The project can be extended into a recurring operational monitoring solution with scheduled SQL execution, automated Excel refreshes, Power BI dashboards, and alert notifications.
+### 4. Improve performance thresholds
+
+Calibrate revenue bands and operational thresholds using:
+
+- Historical performance
+- Business targets
+- Service-level agreements
+- Category-specific expectations
+
+### 5. Automate recurring reporting
+
+The project can be extended into an automated reporting solution with:
+
+- Scheduled SQL execution
+- Automated Excel refreshes
+- Power BI dashboards
+- Email notifications
+- Exception-based alerts
 
 ---
 
-## Potential Enhancements
+## Potential Future Enhancements
 
-Future versions of this project could include:
+Future improvements could include:
 
 - Dynamic date parameters
 - Automated SQL-to-Excel refresh workflows
@@ -511,8 +710,8 @@ Future versions of this project could include:
 - Product-level performance analysis
 - Freight-cost analysis
 - Shipping-time analysis
-- Week-over-week comparisons
-- Month-over-month comparisons
+- Week-over-week comparison
+- Month-over-month comparison
 - Rolling averages
 - Seasonality-adjusted thresholds
 - Automated email alerts
@@ -520,34 +719,41 @@ Future versions of this project could include:
 - Missing-date monitoring
 - Data-quality validation checks
 - Incremental reporting workflows
-- Forecasting and anomaly detection
-- Executive KPI summary pages
+- Forecasting
+- Anomaly detection
+- Customer-segmentation analysis
+- Profitability analysis
 
 ---
 
-## Project Outcomes
+## Professional Skills Demonstrated
 
 This project demonstrates the ability to:
 
 - Translate business questions into analytical requirements
-- Work with normalized relational datasets
-- Build repeatable SQL-based KPI calculations
-- Monitor operational performance over time
+- Work with relational e-commerce data
+- Validate data structures before analysis
+- Join multiple source tables
+- Build reusable KPI calculations
+- Analyze operational performance
 - Compare actual and estimated delivery dates
-- Analyze category-level commercial performance
-- Combine revenue, order, review, and cancellation metrics
-- Use rankings and classifications to support prioritization
-- Build Excel-based analytical reporting
-- Communicate findings through business-oriented documentation
-- Design a foundation for future BI automation
+- Calculate revenue and category metrics
+- Measure customer review performance
+- Analyze cancellation risk
+- Use SQL CTEs and window functions
+- Build ranking and classification logic
+- Create Excel-based reporting outputs
+- Present data-driven findings clearly
+- Connect technical analysis to business decisions
+- Structure an analytics project professionally on GitHub
 
 ---
 
 ## Dataset Attribution
 
-This project uses the **Olist Brazilian E-Commerce Public Dataset**, a publicly available dataset containing information about approximately 100,000 orders from a Brazilian online marketplace.
+This project uses the **Olist Brazilian E-Commerce Public Dataset**.
 
-The dataset includes information about:
+The dataset contains information related to approximately 100,000 orders from a Brazilian online marketplace, including:
 
 - Orders
 - Order status
@@ -569,13 +775,13 @@ Dataset source:
 
 ### Himanshi Bhere
 
-This repository is part of an analytics portfolio focused on:
+This project is part of an analytics portfolio focused on:
 
 - SQL Server
 - T-SQL
 - Business intelligence
-- Operational performance monitoring
 - E-commerce analytics
+- Operational performance monitoring
 - Excel reporting
 - KPI development
 - Data-driven decision support
@@ -584,8 +790,6 @@ This repository is part of an analytics portfolio focused on:
 
 ## License and Attribution
 
-This repository is an analytical portfolio project.
+This repository is an analytical portfolio project created for educational, professional development, and business intelligence demonstration purposes.
 
 The underlying data is provided by the **Olist Brazilian E-Commerce Public Dataset** and is available through Kaggle.
-
-All analytical logic, SQL scripts, Excel reporting, visualizations, and documentation in this repository were created for educational and portfolio purposes.
