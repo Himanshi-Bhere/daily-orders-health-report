@@ -1,132 +1,280 @@
 # Daily Orders Health Report
 
-> **SQL Server + Microsoft Excel analysis of Olist e-commerce order volume, delivery performance, cancellations, and late-delivery risk.**
+> **SQL Server and Microsoft Excel analytics project for monitoring e-commerce order health, delivery performance, cancellations, late deliveries, and category-level business KPIs.**
 
 [![SQL Server](https://img.shields.io/badge/SQL%20Server-T--SQL-CC2927?logo=microsoftsqlserver&logoColor=white)](https://www.microsoft.com/sql-server)
-[![Excel](https://img.shields.io/badge/Microsoft%20Excel-Analysis-217346?logo=microsoftexcel&logoColor=white)](https://www.microsoft.com/microsoft-365/excel)
+[![Microsoft Excel](https://img.shields.io/badge/Microsoft%20Excel-Analytics-217346?logo=microsoftexcel&logoColor=white)](https://www.microsoft.com/microsoft-365/excel)
 [![Dataset](https://img.shields.io/badge/Dataset-Olist%20Brazilian%20E--Commerce-0F766E)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+[![Project Type](https://img.shields.io/badge/Project-Business%20Analytics-2563EB)](https://github.com/Himanshi-Bhere/daily-orders-health-report)
+
+---
 
 ## Overview
 
-This project develops a practical daily health-monitoring report for the **Olist Brazilian E-Commerce Public Dataset**. The workflow combines SQL Server analysis with an Excel reporting layer to transform raw order-level data into operational KPIs, daily trends, alert flags, and business findings.
+The **Daily Orders Health Report** is an end-to-end business analytics project based on the Olist Brazilian E-Commerce Public Dataset.
 
-The report is designed to answer a core operations question:
+The project combines **SQL Server**, **T-SQL**, and **Microsoft Excel** to transform raw e-commerce data into practical operational and commercial insights.
 
-> **Is order and delivery performance healthy, and which dates require investigation?**
+It answers two key business questions:
 
-The analysis focuses on the final 90-day period available in the order dataset: **July 19, 2018 through October 17, 2018**.
+1. **Is daily order and delivery performance healthy?**
+2. **Which product categories require attention based on revenue, order volume, average order value, customer reviews, and cancellation rate?**
+
+The project is organized into two analytical workstreams:
+
+- [Part 1 — Daily Order Health](part1-order-health/README.md)
+- [Part 2 — Category KPI Scorecard](part2-category-kpi-scorecard/README.md)
+
+---
 
 ## Business Objectives
 
-The report helps an operations or business-intelligence team monitor:
+This project is designed to help operations and business intelligence teams monitor:
 
 - Daily order volume
 - Delivered and cancelled orders
 - Late-delivery activity
-- Average delivery time
-- Cancellation and late-delivery rates
-- Dates that exceed defined operational thresholds
-- Potential delivery-timeliness risks requiring further review
+- Average delivery duration
+- Cancellation rate
+- Late-delivery rate
+- Revenue by product category
+- Monthly category performance
+- Average order value
+- Customer review performance
+- Category-level cancellation risk
+- Top- and bottom-performing categories
+- Dates and categories requiring investigation
 
-## Dataset
-
-This project uses the **Olist Brazilian E-Commerce Public Dataset**, which contains approximately 100,000 orders from a Brazilian e-commerce marketplace.
-
-The source order data covers approximately **September 2016 through October 2018**. For focused operational monitoring, this project analyzes the final 90-day window represented in the SQL report.
-
-### Primary source table
-
-- `olist_orders_dataset`
-
-### Important fields used
-
-- `order_id`
-- `order_status`
-- `order_purchase_timestamp`
-- `order_delivered_customer_date`
-- `order_estimated_delivery_date`
-
-## Technology Stack
-
-- **SQL Server / T-SQL** — data profiling, KPI calculation, conditional aggregation, and daily reporting
-- **SQL Server Management Studio (SSMS)** — query execution and validation
-- **Microsoft Excel** — report presentation, monitoring flags, summaries, and findings
-- **GitHub** — version control and portfolio documentation
+---
 
 ## Repository Structure
 
 ```text
 .
-├── excel/
-│   └── daily_orders_health_report.xlsx
-├── screenshorts/
-│   ├── daily_health_report.png
-│   ├── daily_orders_chart.png
-│   ├── findings .png
-│   └── summary.png
-├── sql/
-│   └── olist_orders_health_report.sql
+├── part1-order-health/
+│   ├── excel/
+│   │   └── daily_orders_health_report.xlsx
+│   ├── sql/
+│   │   └── part1_daily_orders_health.sql
+│   ├── screenshots/
+│   │   ├── daily_health_report.png
+│   │   ├── daily_orders_chart.png
+│   │   ├── findings.png
+│   │   └── summary.png
+│   └── README.md
+│
+├── part2-category-kpi-scorecard/
+│   ├── excel/
+│   │   └── .gitkeep
+│   ├── sql/
+│   │   └── part2_category_kpi_scorecard.sql
+│   ├── screenshots/
+│   │   ├── part2_category_pivot.png
+│   │   ├── part2_findings.png
+│   │   ├── part2_sparkline.png
+│   │   └── part2_summary.png
+│   └── README.md
+│
 └── README.md
 ```
 
-> The `screenshorts` directory name is retained to match the existing repository structure.
+> The Part 2 Excel folder is reserved for the category scorecard workbook.
+
+---
+
+## Analytical Workstreams
+
+### Part 1 — Daily Order Health
+
+Part 1 focuses on operational performance during a selected 90-day reporting period.
+
+The analysis includes:
+
+- Orders placed
+- Orders delivered
+- Orders cancelled
+- Late deliveries
+- Average delivery time
+- Daily operational health
+- Threshold-based monitoring flags
+
+The reporting period analyzed is:
+
+```text
+July 19, 2018 through October 17, 2018
+```
+
+View the complete analysis:
+
+[Open Part 1 documentation](part1-order-health/README.md)
+
+[View Part 1 SQL script](part1-order-health/sql/part1_daily_orders_health.sql)
+
+---
+
+### Part 2 — Category KPI Scorecard
+
+Part 2 evaluates commercial performance and customer experience by product category and month.
+
+The analysis combines:
+
+- Revenue
+- Unique orders
+- Average order value
+- Average review score
+- Cancelled orders
+- Cancellation rate
+- Revenue-band classification
+- Top-10 category ranking
+- Bottom-10 category ranking
+- Monthly category performance
+
+View the complete analysis:
+
+[Open Part 2 documentation](part2-category-kpi-scorecard/README.md)
+
+[View Part 2 SQL script](part2-category-kpi-scorecard/sql/part2_category_kpi_scorecard.sql)
+
+---
+
+## Technology Stack
+
+| Technology | Purpose |
+|---|---|
+| **SQL Server / T-SQL** | Data preparation, joins, KPI calculations, aggregations, classifications, and rankings |
+| **SQL Server Management Studio** | Query execution and validation |
+| **Microsoft Excel** | Reporting, dashboards, charts, scorecards, and business findings |
+| **GitHub** | Version control, documentation, and project presentation |
+
+---
+
+## Dataset
+
+This project uses the **Olist Brazilian E-Commerce Public Dataset**, a public dataset containing approximately 100,000 orders from a Brazilian online marketplace.
+
+The dataset provides information about:
+
+- Orders
+- Order status
+- Order items
+- Products
+- Product categories
+- Customer reviews
+- Product prices
+- Delivery dates
+- Estimated delivery dates
+
+### Primary Tables
+
+```text
+olist_orders_dataset
+olist_order_items_dataset
+olist_products_dataset
+olist_order_reviews_dataset
+```
+
+### Key Fields
+
+```text
+order_id
+order_status
+order_purchase_timestamp
+order_delivered_customer_date
+order_estimated_delivery_date
+product_id
+product_category_name
+price
+review_score
+```
+
+Dataset source:
+
+[Olist Brazilian E-Commerce Public Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+
+---
 
 ## Analysis Workflow
 
 ```text
-Olist order data
-       ↓
-SQL Server data profiling
-       ↓
-Final 90-day analysis window
-       ↓
-Daily KPI aggregation
-       ↓
-Operational health flags
-       ↓
-Excel report and visual summaries
-       ↓
-Business findings
+Olist e-commerce dataset
+          ↓
+SQL Server data validation
+          ↓
+Table joins and data preparation
+          ↓
+KPI calculation
+          ↓
+Daily operational monitoring
+          ↓
+Category performance scorecard
+          ↓
+Excel reporting and visualization
+          ↓
+Business findings and recommendations
 ```
 
-## SQL Analysis
+---
 
-The SQL script in [`sql/olist_orders_health_report.sql`](sql/olist_orders_health_report.sql) produces the core metrics used in the report.
+## Key Metrics
 
-### Analysis components
+### Operational Health Metrics
 
-1. Total order count
-2. Order-status distribution
-3. Minimum and maximum order dates
-4. Final 90-day analysis boundaries
-5. Orders placed during the analysis period
-6. Delivered orders
-7. Cancelled orders
-8. Late deliveries
-9. Average delivery time
-10. Daily orders placed
-11. Daily orders delivered
-12. Daily cancelled orders
-13. Daily late deliveries
-14. Daily average delivery time
-15. Final daily orders health report
+- Total orders
+- Orders placed by day
+- Orders delivered
+- Cancelled orders
+- Late deliveries
+- Average delivery days
+- Cancellation rate
+- Late-delivery rate
 
-### SQL techniques demonstrated
+### Category Performance Metrics
 
-- `COUNT`, `SUM`, and `AVG`
-- `MIN` and `MAX`
-- `WHERE` filtering
-- `GROUP BY` and `ORDER BY`
-- `CAST` for date-level aggregation
-- `DATEADD` for date-window calculations
-- `DATEDIFF` for delivery-duration analysis
-- `CASE WHEN` conditional logic
+- Total revenue
+- Total unique orders
+- Average order value
+- Average customer review score
+- Cancelled orders
+- Cancellation rate
+- Revenue band
+- Category ranking
+
+---
+
+## SQL Techniques Demonstrated
+
+The project demonstrates practical SQL Server techniques, including:
+
+- `INNER JOIN`
+- `LEFT JOIN`
+- `GROUP BY`
+- `ORDER BY`
+- `COUNT`
+- `COUNT(DISTINCT)`
+- `SUM`
+- `AVG`
+- `MIN`
+- `MAX`
+- `CASE WHEN`
 - Conditional aggregation
-- Null handling for delivery dates
+- Common table expressions
+- `DATEADD`
+- `DATEDIFF`
+- `CAST`
+- `DATENAME`
+- `YEAR`
+- `MONTH`
+- `NULLIF`
+- `ROW_NUMBER`
+- `HAVING`
+- Null handling
+- Date-level aggregation
 
-## Key Performance Indicators
+---
 
-The report summarizes the following results for the analyzed period:
+## Part 1 KPI Summary
+
+The selected 90-day operational analysis produced the following results:
 
 | KPI | Result |
 |---|---:|
@@ -138,107 +286,164 @@ The report summarizes the following results for the analyzed period:
 | Cancellation rate | 1.30% |
 | Late-delivery rate | 8.78% |
 
-### KPI definitions
+These results indicate that delivery timeliness was a more significant operational concern than cancellations during the analyzed period.
 
-- **Cancellation rate** = `Cancelled Orders / Orders Placed × 100`
-- **Late-delivery rate** = `Late Deliveries / Delivered Orders × 100`
-- **Average delivery time** = Average number of days between purchase and customer delivery for delivered orders
-- **Late delivery** = Delivered after the estimated delivery date
-
-## Excel Report
-
-The workbook [`excel/daily_orders_health_report.xlsx`](excel/daily_orders_health_report.xlsx) contains three principal reporting areas:
-
-### 1. Daily Health Report
-
-A daily operational dataset containing:
-
-- Orders placed
-- Orders delivered
-- Orders cancelled
-- Late deliveries
-- Average delivery days
-
-### 2. Operational Health Flags
-
-The report uses exercise-specific thresholds to highlight dates that may require investigation:
-
-| Metric | Alert threshold |
-|---|---:|
-| Cancelled orders | `> 3` |
-| Late deliveries | `> 10` |
-| Average delivery days | `> 8` |
-
-These thresholds are intended as a transparent monitoring framework for this project. In a production environment, they should be calibrated using historical baselines, service-level agreements, seasonality, and business-owner input.
-
-### 3. Summary and Findings
-
-The summary section presents the overall KPIs, while the findings section translates the numerical results into operational observations and possible areas for follow-up.
-
-## Key Findings
-
-- The analysis covers **9,529 orders** placed during the selected 90-day period.
-- **9,284 orders** were delivered, while **124 orders** were cancelled.
-- **815 deliveries** were classified as late, resulting in an **8.78% late-delivery rate** among delivered orders.
-- The **1.30% cancellation rate** is lower than the late-delivery rate, indicating that delivery timeliness is the more prominent operational concern in this analysis.
-- Daily threshold flags provide a simple method for identifying dates that may need additional investigation.
+---
 
 ## Report Previews
 
-### Daily health report
+### Daily Health Report
 
-![Daily Health Report](screenshorts/daily_health_report.png)
+![Daily Health Report](part1-order-health/screenshots/daily_health_report.png)
 
-### Daily orders trend
+### Daily Orders Trend
 
-![Daily Orders Chart](screenshorts/daily_orders_chart.png)
+![Daily Orders Trend](part1-order-health/screenshots/daily_orders_chart.png)
 
-### Summary dashboard
+### Operational Summary
 
-![Summary](screenshorts/summary.png)
+![Operational Summary](part1-order-health/screenshots/summary.png)
 
-### Findings
+### Operational Findings
 
-![Findings](screenshorts/findings%20.png)
+![Operational Findings](part1-order-health/screenshots/findings.png)
+
+### Category KPI Scorecard
+
+![Category KPI Scorecard](part2-category-kpi-scorecard/screenshots/part2_category_pivot.png)
+
+### Category Summary
+
+![Category Summary](part2-category-kpi-scorecard/screenshots/part2_summary.png)
+
+### Category Findings
+
+![Category Findings](part2-category-kpi-scorecard/screenshots/part2_findings.png)
+
+### Category Sparklines
+
+![Category Sparklines](part2-category-kpi-scorecard/screenshots/part2_sparkline.png)
+
+---
 
 ## How to Reproduce the Analysis
 
-1. Obtain the Olist Brazilian E-Commerce Public Dataset.
-2. Load the relevant order data into a SQL Server database.
-3. Create or select a database named `OlistAnalytics`, or update the `USE` statement in the SQL script.
-4. Confirm that the table `olist_orders_dataset` exists and that the required date and status columns are available.
-5. Open [`sql/olist_orders_health_report.sql`](sql/olist_orders_health_report.sql) in SQL Server Management Studio.
-6. Review the analysis dates if applying the workflow to a different reporting period.
-7. Execute the queries and export the daily health result for Excel reporting.
-8. Review the workbook, KPI summary, charts, and operational health flags.
+### Prerequisites
+
+- Microsoft SQL Server
+- SQL Server Management Studio
+- Microsoft Excel
+- Olist Brazilian E-Commerce Public Dataset
+
+### Database Setup
+
+1. Download the Olist dataset.
+2. Create a SQL Server database named:
+
+```sql
+OlistAnalytics
+```
+
+3. Load the required Olist tables into the database.
+4. Confirm that the following tables exist:
+
+```text
+olist_orders_dataset
+olist_order_items_dataset
+olist_products_dataset
+olist_order_reviews_dataset
+```
+
+5. Open the relevant SQL script in SQL Server Management Studio.
+6. Execute the queries and review the output.
+7. Export or transfer the results into Excel for reporting and visualization.
+
+### Part 1 SQL Script
+
+```text
+part1-order-health/sql/part1_daily_orders_health.sql
+```
+
+### Part 1 Excel Workbook
+
+```text
+part1-order-health/excel/daily_orders_health_report.xlsx
+```
+
+### Part 2 SQL Script
+
+```text
+part2-category-kpi-scorecard/sql/part2_category_kpi_scorecard.sql
+```
+
+---
 
 ## Data Quality and Interpretation Notes
 
-- The SQL script currently uses a fixed reporting window from **July 19, 2018 at 17:30:18** through **October 17, 2018 at 17:30:18**. Update these boundaries when refreshing the analysis.
-- Delivery metrics are calculated only where the required delivery timestamps are available.
-- A late delivery is identified when `order_delivered_customer_date` is later than `order_estimated_delivery_date`.
-- Orders are grouped by purchase date for the main daily cohort report.
-- The alert thresholds are analytical assumptions rather than official Olist service-level targets.
-- The reported results should be validated if the source data is transformed, deduplicated, or loaded into a different schema.
+- Part 1 uses a fixed 90-day reporting window from July 19, 2018 through October 17, 2018.
+- The reporting dates should be updated when applying the analysis to a new reporting period.
+- Delivery metrics depend on the availability of delivery timestamps.
+- A delivery is classified as late when the actual delivery date is later than the estimated delivery date.
+- Daily operational metrics are grouped by order purchase date unless otherwise specified.
+- Category revenue is calculated using order-item prices.
+- Average order value is calculated as total revenue divided by distinct orders.
+- Review scores are aggregated before category-level analysis.
+- Revenue-band thresholds are analytical classifications created for this project.
+- Operational thresholds should be calibrated against historical performance or formal service-level agreements.
+- Results may change if the source data is cleaned, deduplicated, transformed, or loaded into a different schema.
+
+---
 
 ## Potential Enhancements
 
-Future iterations could extend the report with:
+Future improvements may include:
 
-- Dynamic date parameters instead of hard-coded date boundaries
+- Dynamic date parameters
 - Automated SQL-to-Excel refresh workflows
-- Regional and state-level delivery analysis
-- Seller, product-category, and freight-performance analysis
+- Power BI dashboard publication
+- Regional and state-level analysis
+- Seller and product-level performance analysis
+- Freight-cost and shipping-time analysis
 - Week-over-week and month-over-month comparisons
-- Rolling averages and seasonality-adjusted thresholds
-- Automated email or dashboard alerts
-- Data validation checks for duplicate orders and missing timestamps
-- Power BI publication for interactive stakeholder reporting
+- Rolling averages
+- Seasonality-adjusted alert thresholds
+- Automated email notifications
+- Duplicate-order detection
+- Missing-date monitoring
+- Data-quality validation checks
+- Incremental reporting workflows
+
+---
 
 ## Project Purpose
 
-This repository demonstrates an end-to-end analytics workflow: translating business questions into SQL logic, producing operational KPIs, building a repeatable monitoring report, and communicating findings in a business-friendly format.
+This repository demonstrates how raw e-commerce data can be transformed into actionable business intelligence.
 
-## License and Data Attribution
+It highlights the ability to:
 
-This repository is an analytical portfolio project. The Olist dataset is publicly available through the [Olist Brazilian E-Commerce Public Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce). Please review the dataset provider's terms and attribution requirements before redistributing the source data.
+- Translate business questions into SQL logic
+- Build repeatable KPI calculations
+- Monitor operational performance
+- Combine multiple relational data sources
+- Create category-level performance scorecards
+- Identify business risks and opportunities
+- Communicate analytical findings through Excel reports
+- Document a complete analytics workflow
+
+---
+
+## Author
+
+**Himanshi Bhere**
+
+This repository is part of an analytics portfolio focused on SQL Server, Excel reporting, operational performance monitoring, and business intelligence.
+
+---
+
+## License and Attribution
+
+This repository is an analytical portfolio project.
+
+The underlying data is provided by the **Olist Brazilian E-Commerce Public Dataset** and is available through Kaggle:
+
+[Olist Brazilian E-Commerce Public Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
